@@ -1,0 +1,22 @@
+body{
+  margin:0;
+  background:#DDDDDD;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+  width:800px;
+  margin:40px auto;
+  background:white;
+  border-radius:8px;
+  padding:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header{
+  background:#7695EC;
+  color:white;
+  padding:15px;
+  font-size:20px;
+  font-weight:bold;
+}

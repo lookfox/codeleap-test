@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import SignupModal from "../components/SignupModal"
 import CreatePost from "../components/CreatePost"
 import { getPosts } from "../services/api"
+import PostCard from "../components/PostCard"
 
 function Home(){
 
@@ -17,36 +18,39 @@ function Home(){
     loadPosts()
   }, [])
 
-  return (
-    <div>
+  
+    return (
+  <div className="container">
 
-      <h2>CodeLeap Network</h2>
+    <div className="header">
+      CodeLeap Network
+    </div>
 
-      {!username && (
-        <SignupModal setUsername={setUsername} />
-      )}
+    {!username && (
+      <SignupModal setUsername={setUsername}/>
+    )}
 
-      {username && (
-        <h2>Welcome {username}</h2>
-      )}
+    {username && (
+      <>
+        <h3>Welcome {username}</h3>
 
-      {username && (
         <CreatePost
           username={username}
           onPostCreated={loadPosts}
         />
-      )}
 
-      {posts.map((post) => (
-        <div key={post.id}>
-          <h3>{post.title}</h3>
-          <p>{post.content}</p>
-          <small>{post.username}</small>
-        </div>
-      ))}
+        {posts.map((post) => (
+          <PostCard
+            key={post.id}
+            post={post}
+          />
+        ))}
+      </>
+    )}
 
-    </div>
-  )
+  </div>
+)
+  
 }
 
 export default Home
