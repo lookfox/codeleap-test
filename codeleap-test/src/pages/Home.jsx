@@ -20,12 +20,12 @@ function Home(){
 
   
     return (
-  <div className="container">
+  <div className="app-container">
 
     <div className="header">
       CodeLeap Network
     </div>
-
+        <div className="card">
     {!username && (
       <SignupModal setUsername={setUsername}/>
     )}
@@ -43,12 +43,13 @@ function Home(){
           <PostCard
             key={post.id}
             post={post}
+            username={username}
           />
         ))}
       </>
     )}
-
-  </div>
+</div>
+</div>
 )
   
 }

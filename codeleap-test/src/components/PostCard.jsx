@@ -1,49 +1,54 @@
-import { useState } from "react"
-import DeleteModal from "./DeleteModal"
+import { useState } from "react";
+import DeleteModal from "./DeleteModal";
+import EditModal from "./EditModal";
 
-function PostCard({ post }) {
+function PostCard({ post, username }) {
 
-  const [showDelete, setShowDelete] = useState(false)
+  const [showDelete, setShowDelete] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   const handleDelete = async () => {
-
     await fetch(`https://dev.codeleap.co.uk/careers/${post.id}/`, {
-      method:"DELETE"
-    })
+      method: "DELETE"
+    });
 
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
-  return (
+return (
+  <div className="post-card">
 
-    <div style={{
-      border:"1px solid #ddd",
-      padding:"15px",
-      marginTop:"15px",
-      borderRadius:"6px"
-    }}>
+    <div className="post-header">
+      {post.title}
+    </div>
 
-      <h3>{post.title}</h3>
+    <div className="post-body">
 
       <small>{post.username}</small>
 
       <p>{post.content}</p>
 
-      <button onClick={() => setShowDelete(true)}>
-        Delete
-      </button>
+      {post.username === username && (
+        <div>
 
-      {showDelete && (
-        <DeleteModal
-          onCancel={() => setShowDelete(false)}
-          onConfirm={handleDelete}
-        />
+          <button onClick={() => setShowEdit(true)}>
+            Edit
+          </button>
+
+          <button
+            style={{ marginLeft: "10px", background: "red", color: "white" }}
+            onClick={() => setShowDelete(true)}
+          >
+            Delete
+          </button>
+
+        </div>
       )}
 
     </div>
 
-  )
-
+  </div>
+);
 }
 
-export default PostCard
+export default PostCard;
